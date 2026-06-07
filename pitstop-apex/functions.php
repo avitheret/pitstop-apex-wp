@@ -4,7 +4,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PITSTOP_VER', '1.0.0' );
+define( 'PITSTOP_VER', '1.1.0' );        // theme/asset version (bump every task)
+define( 'PITSTOP_DISPLAY_VER', 'v1.1' ); // shown in the top menu bar
 
 /* ─── Setup ─── */
 add_action( 'after_setup_theme', function () {

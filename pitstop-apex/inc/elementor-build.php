@@ -289,6 +289,14 @@ function pitstop_build_home() {
         update_post_meta( $pid, '_pitstop_home', '1' );
     }
 
+    // RULE: always delete autosaves/revisions first, so the Elementor editor
+    // loads the freshly injected build instead of a stale autosave.
+    foreach ( wp_get_post_revisions( $pid, [ 'posts_per_page' => -1 ] ) as $rev ) {
+        wp_delete_post_revision( $rev->ID );
+    }
+    global $wpdb;
+    $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->posts} WHERE post_parent = %d AND post_type = 'revision'", $pid ) );
+
     // CRITICAL: wp_slash so WordPress doesn't strip the JSON escaping
     update_post_meta( $pid, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
     update_post_meta( $pid, '_elementor_edit_mode', 'builder' );

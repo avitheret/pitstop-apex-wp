@@ -24,6 +24,7 @@ $logo = get_template_directory_uri() . '/assets/images/pitstop-logo-white.png';
       <a href="#resources">Resources</a>
     </div>
     <div style="display:flex;align-items:center;gap:14px">
+      <span class="ver-badge"><?php echo esc_html( defined('PITSTOP_DISPLAY_VER') ? PITSTOP_DISPLAY_VER : 'v1.0' ); ?></span>
       <a class="btn ghost" href="#cta">Find a Dealer</a>
       <button class="hamb" id="hamb" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
